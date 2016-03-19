@@ -3,7 +3,7 @@
 # SDIO Basic feature
 #####################
 
-DHDCFLAGS += -Wall -Wstrict-prototypes -Dlinux -DLINUX -DBCMDRIVER             \
+DHDCFLAGS += -O2 -Wall -Wstrict-prototypes -Dlinux -DLINUX -DBCMDRIVER             \
         -DBCMDONGLEHOST -DUNRELEASEDCHIP -DBCMDMA32 -DBCMFILEIMAGE            \
         -DDHDTHREAD -DBDC -DOOB_INTR_ONLY                                     \
         -DDHD_BCMEVENTS -DSHOW_EVENTS -DBCMDBG                                \
@@ -62,7 +62,8 @@ DHDCFLAGS += -DDISABLE_11H_SOFTAP
 DHDCFLAGS += -DSUPPORT_PM2_ONLY
 DHDCFLAGS += -DSUPPORT_DEEP_SLEEP
 DHDCFLAGS += -DSUPPORT_AMPDU_MPDU_CMD
-DHDCFLAGS += -DBLOCK_IPV6_PACKET -DPASS_IPV4_SUSPEND
+DHDCFLAGS += -DBLOCK_IPV6_PACKET
+# -DPASS_IPV4_SUSPEND
 DHDCFLAGS += -DSOFTAP_SEND_HANGEVT
 
 # For special PNO Event keep wake lock for 10sec
@@ -89,7 +90,7 @@ ifeq ($(CONFIG_BROADCOM_WIFI_RESERVED_MEM),y)
 endif
 
 # DTIM listen interval in suspend mode(0 means follow AP's DTIM period)
-DHDCFLAGS += -DCUSTOM_SUSPEND_BCN_LI_DTIM=0
+# DHDCFLAGS += -DCUSTOM_SUSPEND_BCN_LI_DTIM=0
 
 # Ioctl timeout 5000ms
 DHDCFLAGS += -DIOCTL_RESP_TIMEOUT=5000
@@ -423,7 +424,7 @@ DHDCFLAGS += -include "dhd_sec_feature.h"
 # Others
 #########
 
-#EXTRA_LDFLAGS += --strip-debug
+EXTRA_LDFLAGS += --strip-debug
 
 EXTRA_CFLAGS += $(DHDCFLAGS) -DDHD_DEBUG
 EXTRA_CFLAGS += -DSRCBASE=\"$(src)\"
